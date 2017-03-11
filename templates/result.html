@@ -1,0 +1,44 @@
+{{ define "resultPage" }}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Расписание</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="Container">
+    <div class="Calendar">
+      {{ range .Months }}
+        <div class="Month">
+          <h3>{{ .Title }}</h3>
+
+          <div class="Days">
+            {{ range .Days -}}
+              {{ if . -}}
+                <div class="Day"
+                  data-uid="{{ if .User }} {{- .User.ID -}} {{ else -}} -1 {{- end }}"
+                  {{ if .User }} data-tooltip="{{- .User.Name -}}" {{ end }}>
+                  {{ .Time.Day }}
+                </div>
+              {{- else -}}
+                <div class="Day DayEmpty">
+                  e
+                </div>
+              {{- end }}
+            {{- end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+    <div class="Legend">
+      {{ range .Users }}
+        <div class="Name" data-uid="{{ .ID }}">
+          {{ .Name }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</body>
+</html>
+{{ end }}

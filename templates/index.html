@@ -1,0 +1,70 @@
+{{ define "indexPage" }}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Расписание</title>
+  <style>
+    body {
+      font-family: Helvetica, sans-serif;
+    }
+    .Form {
+      max-width: 400px;
+      margin: 10px auto;
+    }
+    .Name {
+      display: block;
+      width: 100%;
+      font-size: 18px;
+      margin: 12px 0;
+    }
+    .Add, .Submit {
+      cursor: pointer;
+      border-radius: 0;
+      padding: 4px 16px;
+      font-size: 20px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      opacity: 0.9;
+    }
+    .Add:hover, .Submit:hover {
+      opacity: 1;
+    }
+    .Add {
+      background: #fff;
+    }
+    .Submit {
+      background: #389bff;
+    }
+  </style>
+</head>
+<body>
+  <form class="Form" action="/result" method="POST">
+    <h3>Введи имена людей</h3>
+    <div class="Inputs">
+      <input class="Name" type="text" name="username"/>
+      <input class="Name" type="text" name="username"/>
+      <input class="Name" type="text" name="username"/>
+    </div>
+    <button class="Add" type="button">Добавить</button>
+    <br/>
+    <button class="Submit" type="submit">Показать расписание</button>
+  </form>
+
+  <script>
+    (function() {
+      var button = document.querySelector('.Add');
+      var form = document.querySelector('.Form');
+      var inputs = document.querySelector('.Inputs');
+      button.addEventListener('click', function() {
+        var el = document.createElement('input');
+        el.className = 'Name';
+        el.setAttribute('type', 'text');
+        el.setAttribute('name', 'username');
+        inputs.appendChild(el);
+      });
+    })();
+  </script>
+</body>
+</html>
+{{ end }}
